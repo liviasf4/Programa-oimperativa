@@ -1,0 +1,8 @@
+ Com os conteúdos apresentados pelo professor, aprendi a utilizar melhor as estruturas condicionais na linguagem C. 
+ Passei a compreender com mais clareza como funcionam os comandos `if`, `else` e também conheci o `switch`, que utilizei em um dos códigos da lista de exercícios.
+
+Além disso, tive dificuldades no início com o uso do `scanf`, pois não sabia exatamente em que posição utilizar os especificadores de formato como `%d`, `%s` e `%f`. 
+Com a prática e a leitura do material, fui entendendo melhor como utilizá-los corretamente.
+
+Outro ponto importante que aprendi foi que a condição utilizada nas estruturas condicionais precisa estar sempre entre parênteses, algo que antes eu não sabia.
+Ao longo das atividades, consegui compreender melhor esses detalhes e me sentir mais confortável ao programar utilizando estruturas condicionais em C.
