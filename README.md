@@ -1,6 +1,6 @@
 # Programação imperativa
 
-Aprendizados sobre os códigos em C:
+Aprendizados sobre os códigos em C (LISTA 1):
 
  - exercício 01
    Tive um pouco de dúvida na parte das expressões matemáticas, senti que não estava tão explícito o cálculo, mas fui testanto e consegui fazer
