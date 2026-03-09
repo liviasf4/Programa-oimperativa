@@ -1,5 +1,3 @@
-
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -7,7 +5,7 @@ int main(){
 
     int p1, p2, p3, p11, p22, p33;
 
-    scanf("%d/%d/%d %d/%d/%d", &p1, &p2,&p3, &p11, &p22, &p33); 
+    scanf("%d/%d/%d %d/%d/%d", &p1, &p2,&p3, &p11, &p22, &p33);
     int resultado = ((p1 + p2 + p3 + p11 + p22 + p33)*7)%101;
     
     //AMOR
@@ -21,7 +19,7 @@ int main(){
         puts(" Se o papo e as ideias baterem, esta liberado pensar em algo.");
     }else if (resultado >= 70 && resultado <= 80){
         puts(" Saia com o coracao aberto, mas lembre, nem toda troca de olhar em onibus e sinal de romance.");
-    }else if (resultado > 80){
+    }else if (resultado >= 80){
         puts(" Um dia deslumbrantemente lindo para amar. Ps: Cuidado com a intensidade.");
     } 
     //SORTE
@@ -43,7 +41,7 @@ int main(){
         printf(" Por sua conta em risco.");
     }else if (resultado2 >= 80 && resultado2 <= 90){
         printf(" Hoje vale a pena arriscar.");
-    }else if (resultado2 >90){
+    }else if (resultado2 >= 90){
         printf(" Nao tenha medo de virar cartas hoje.");
     }
     
@@ -58,14 +56,14 @@ int main(){
     
     if (resultado3 < 40){
         puts(" Hoje nao sera um dia tao proveitoso, keep calm e faca o basico.");
-    }else if (resultado3 >= 40 && resultado3<= 50){
-        puts(" Hoje nao sera um dia tao proveitoso, keep calm e faca o basico.");
-    }else if (resultado3 >= 51 && resultado3<= 69){
+    }else if (resultado3 >= 40 && resultado3 <= 50){
+        puts(" Segura a emocao, nao xinga ninguem, nao esquece de beber agua.");
+    }else if (resultado3 >= 51 && resultado3 <= 69){
         puts(" Um dia proveitoso com certeza, leve sua simpatia consigo.");
     }else if (resultado3 >= 70 && resultado3 <= 84){
         puts(" Boas vibracoes hoje, chances podem estar ao seu redor.");
-    }else if (resultado3 > 85){
-        puts(" Use do maximo de networking possÃ­vel hoje, dia bom para negocios.");
+    }else if (resultado3 >= 85){
+        puts(" Use do maximo de networking possível hoje, dia bom para negocios.");
     }
         
     //COR
