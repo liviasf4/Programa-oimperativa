@@ -8,87 +8,75 @@ int main(){
     int x, y, c;
     int contagem_x = 0;
     int contagem_y = 0;
-    int K = 1;
+    int quadrante = 0;
 
     scanf("%d %d %d", &x, &y, &c);
 
-    if ((c == 1) || (c == 3)){
+    if ((x > 0) && (y > 0)){quadrante = 1;}
+    else if ((x < 0) && (y > 0)){quadrante = 2;}
+    else if ((x < 0) && (y < 0)){quadrante = 3;}
+    else if ((x > 0) && (y < 0)){quadrante = 4;}
 
-        if (c == 1){
-            if ((x > 0) && (y > 0)){
-                puts("caminhada invalida\n");
-            }else{
-                K = 0;
-            }
-        }else if (c ==3){
-            if ((x < 0) && (y < 0)){
-                puts("caminhada invalida\n");
-            }else{
-                K = 0;
-            }
-        }if (K == 0){
-            if((x < 0) && (y > 0)){
-                //Será o quadrante 2
+    if ((quadrante == 1) && (c == 2)){
 
-                x *= -1;
+        contagem_x = x + 1;
+        contagem_y = y + 1;
 
-                contagem_x = x + 1;
-                contagem_y = y + 1;
+        printf("%d passos em y e %d passos em x", contagem_y, contagem_x);           //QUADRANTE 1
+        
+    }else if ((quadrante == 1) && (c == 4)){
 
-                printf("%d passos em y e %d passos em x", contagem_y, contagem_x);
+        contagem_x = x + 1;
+        contagem_y = y + 1;
 
-            }else if ((x > 0) && (y < 0)){
-                // será o quadrante 4
+        printf("%d passos em x e %d passos em y", contagem_x, contagem_y);
+    }else if((quadrante == 1 && c == 1)){puts("caminhada invalida");}
 
-                y *= -1;
+    if ((quadrante == 2) && (c == 1)){
 
-                contagem_x = x + 1;
-                contagem_y = y + 1;
+        contagem_x = (x * -1) + 1;
+        contagem_y = y + 1;
 
-                printf("%d passos em y e %d passos em x", contagem_y, contagem_x);
+        printf("%d passos em y e %d passos em x", contagem_y, contagem_x);           //QUADRANTE 2
+        
+    }else if ((quadrante == 2) && (c == 3)){
 
-            }
-        }
-    }
+        contagem_x = (x * -1) + 1;
+        contagem_y = y + 1;
 
+        printf("%d passos em x e %d passos em y", contagem_x, contagem_y);
+    }else if((quadrante == 2 && c == 2)){puts("caminhada invalida");}
 
-    //SE C for 2 ou 4
-    if ((c == 2) || (c == 4)){
+    if ((quadrante == 3) && (c == 2)){
 
-        if (c == 2){
-            if ((x < 0) && (y > 0)){
-                puts("caminhada invalida\n");
-            }else{
-                K = 0;
-            }
-        }else if (c ==4){
-            if ((x > 0) && (y < 0)){
-                puts("caminhada invalida\n");
-            }else{
-                K = 0;
-            }
-        }if (K == 0){
-            if((x > 0) && (y > 0)){
-                //Será o quadrante 1
+        contagem_x = (x * -1) + 1;
+        contagem_y = (y * -1) + 1;
 
-                contagem_x = x + 1;
-                contagem_y = y + 1;
+        printf("%d passos em x e %d passos em y", contagem_x, contagem_y);           //QUADRANTE 3
+        
+    }else if ((quadrante == 3) && (c == 4)){
 
-                printf("%d passos em y e %d passos em x", contagem_y, contagem_x);
+        contagem_x = (x * -1) + 1;
+        contagem_y = (y * -1) + 1;
 
-            }else if ((x < 0) && (y < 0)){
-                // será o quadrante 3
+        printf("%d passos em y e %d passos em x", contagem_y, contagem_x);
+    }else if((quadrante == 3 && c == 3)){puts("caminhada invalida");}
 
-                x *= -1;
-                y *= -1;
+    if ((quadrante == 4) && (c == 1)){
 
-                contagem_x = x + 1;
-                contagem_y = y + 1;
+        contagem_x = x + 1;
+        contagem_y = (y * -1) + 1;
 
-                printf("%d passos em y e %d passos em x", contagem_y, contagem_x);
+        printf("%d passos em x e %d passos em y", contagem_x, contagem_y);           //QUADRANTE 4
+        
+    }else if ((quadrante == 4) && (c == 3)){
 
-            }
-        }
-    }
+        contagem_x = x + 1;
+        contagem_y = (y * -1) + 1;
+
+        printf("%d passos em y e %d passos em x", contagem_y, contagem_x);
+    }else if((quadrante == 4 && c == 4)){puts("caminhada invalida");}
+
+    return 0;
 
 }
