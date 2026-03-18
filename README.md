@@ -25,13 +25,13 @@ Aprendizados sobre os códigos em C (LISTA 2):
 - exercício 01
   Passei um bom tempo tentando criar a lógica certa e consegui, mas não percebi que minha lógica não printava o outro lado da pirâmide ao contrário, então tive que pesquisar como iria alterar essa sequência
 
--exercício 02
+- exercício 02
  Tive muita dificuldade nessa questão e pedi ajuda pro chat, mas consegui entender o que foi feito.
 
 - exercicio 03
   Era meio que a sequência de fibonacci, então deu para entender o funcionamento, mas tive dificuldade nessa também
 
--exercicio 4
+- exercicio 4
 Foi bem parecida com a do teste, achei essa mais fácil, tive dificuldade também, precisei mudar a lógica ao decorrer da  construção do código.
 
  
