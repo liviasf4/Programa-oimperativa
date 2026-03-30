@@ -1,0 +1,115 @@
+#include <stdio.h>
+
+int main(){
+
+    int N, X, Y;
+    int i = 1; 
+    int j = 0;
+
+    int energeticos = 50;
+    int hora = 420; // 7h em minutos
+
+    int h, m, l;
+
+    int clientes = 0;
+    int hora_final = 0;
+    int bebida = 0;
+    int foi_y = 0;
+
+    scanf("%d", &N);
+    scanf("%d", &X);
+    scanf("%d", &Y);
+
+    int hour[Y];
+    int latas[Y];
+
+    // leitura
+    while (j < Y){
+        scanf("%d:%d %d", &h, &m, &l);
+        hour[j] = h * 60 + m;
+        latas[j] = l;
+        j++;
+    }
+
+    // simula??o
+    while ((i <= N) && (energeticos > 0)){
+
+        foi_y = 0; // reset no come?o da itera??o
+
+        hora += 3;
+        
+        // verifica clientes especiais
+        for (int b = 0; b < Y; b++){
+            if (hour[b] == hora){
+                energeticos -= latas[b];
+                clientes++;
+                hora_final = hour[b];
+                i++;
+                foi_y = 1;
+                continue;
+            }
+        }
+
+        if (foi_y == 1) continue;
+
+        // cliente m?ltiplo de X
+        if ((i <= N) && (energeticos > 0)){
+            if (X != 0 && X != 1){
+                if (i != 0 && i % X == 0){
+                    energeticos -= 1;
+                    i++;
+                    clientes++;
+                    continue;
+                }
+            }
+        }
+
+        // caso X == 1
+        if ((i <= N) && (energeticos > 0)){
+            if (X == 1){
+                energeticos -= 1;
+                i++;
+                clientes++;
+                continue;
+            }
+        }
+        clientes++;
+        i++;
+        
+    }
+
+    int M = hora % 60;
+    int H = hora / 60;
+
+    // sa?da
+    if (energeticos > 0){
+        if(energeticos == 1){
+            printf("Ainda nao foram vendidas latas suficientes. Falta %d lata.", energeticos);
+        }else{
+            printf("Ainda nao foram vendidas latas suficientes. Faltam %d latas.", energeticos);
+        }
+        
+    } else {
+
+        int achou = 0;
+
+        for(int x = 0; x < Y; x++){
+            if(hour[x] == hora_final){
+                bebida = latas[x];
+                achou = 1;
+            }
+        }
+
+    if (bebida == 4){
+        printf("Quem levou a cesta basica foi o %d* cliente atendido por coragem, as %02d:%02d. Que comprou 1 lata.", clientes, H, M);
+    }
+
+    else if (achou){
+        printf("Quem levou a cesta basica foi o %d* cliente atendido por coragem, as %02d:%02d. Que comprou %d latas.", clientes, H, M, bebida);
+    } else {
+        printf("Quem levou a cesta basica foi o %d* cliente atendido por coragem, as %02d:%02d. Que comprou 1 lata.", clientes, H, M);
+    }
+}
+
+    return 0;
+}
