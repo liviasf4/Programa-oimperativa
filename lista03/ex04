@@ -1,0 +1,96 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(){
+
+    int R, F;
+    scanf("%d", &R);
+
+    int i = 0;
+    int j = 0;
+    int x = 0;
+
+    char leds[60];
+
+    int estado = 0;
+    char ultimo_foi = 'X';
+    char ultima_lista[1000];
+    int ul = 0;
+    char primeira_letra;
+
+    while (i < R){
+
+        scanf("%s %d", leds, &F);
+
+        int tam = strlen(leds);
+        primeira_letra = leds[0]; // pega antes de modificar
+
+        while(j < F){
+
+            estado = 0;           // RESET
+            ultimo_foi = 'X';     // RESET
+            x = 0;                // RESET
+
+            while((estado == 0) && (x < tam)){
+
+                if (leds[x] == 'X'){
+                    leds[x] = 'O';
+                    estado = 1;
+                }else{
+                    leds[x] = 'X';
+                    ultimo_foi = 'X';
+                    x += 1;
+
+                    while((ultimo_foi == 'X') && (x < tam)){
+
+                        if (leds[x] == 'X'){
+                            leds[x] = 'O';
+                            ultimo_foi = 'O';
+                            estado = 1;
+                        }else{
+                            leds[x] = 'X';
+                            ultimo_foi = 'X';
+                        }
+
+                        x += 1;
+                    }
+                }
+            }
+
+            j += 1;
+        }
+        j = 0;
+
+        printf("%s\n", leds);
+
+        // ORNAMENTO ENTRE CASOS (usar i > 0)
+        if (i > 0){
+            if(ul % 2 == 0){
+                if (ultima_lista[ul - 1] == leds[0]){
+                    ultima_lista[ul++] = '@';
+                }else{
+                    ultima_lista[ul++] = '$';
+                }
+            }else{
+                if (ultima_lista[ul - 1] == leds[0]){
+                    ultima_lista[ul++] = '#';
+                }else{
+                    ultima_lista[ul++] = '%';
+                }
+            }
+        }
+
+        // junta na lista gigante
+        for(int b = 0; b < tam; b++){
+            ultima_lista[ul++] = leds[b];
+        }
+
+        i += 1;
+    }
+
+    ultima_lista[ul] = '\0'; // FINAL DA STRING
+
+    printf("%s", ultima_lista);
+
+    return 0;  
+}
