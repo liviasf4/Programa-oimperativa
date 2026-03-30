@@ -1,0 +1,125 @@
+#include <stdio.h>
+
+#define MAX_STR 101
+#define MAX_PALAVRAS 50
+#define MAX_TAM_PALAVRA 101
+
+int eh_letra(char c) {
+    return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
+}
+
+char minusculo(char c) {
+    if (c >= 'A' && c <= 'Z')
+        return c + 32;
+    return c;
+}
+
+int tamanho(char *s) {
+    int i = 0;
+    while (s[i] != '\0') i++;
+    return i;
+}
+
+int sao_anagramas(char *a, char *b) {
+    int freq[26];
+    int i;
+
+    int ta = tamanho(a);
+    int tb = tamanho(b);
+
+    if (ta != tb) return 0;
+
+    for (i = 0; i < 26; i++)
+        freq[i] = 0;
+
+    for (i = 0; i < ta; i++)
+        freq[(int)(minusculo(a[i]) - 'a')]++;
+
+    for (i = 0; i < tb; i++)
+        freq[(int)(minusculo(b[i]) - 'a')]--;
+
+    for (i = 0; i < 26; i++)
+        if (freq[i] != 0) return 0;
+
+    return 1;
+}
+
+int palavras_iguais(char *a, char *b) {
+    int i = 0;
+    while (a[i] != '\0' && b[i] != '\0') {
+        if (minusculo(a[i]) != minusculo(b[i])) return 0;
+        i++;
+    }
+    return a[i] == '\0' && b[i] == '\0';
+}
+
+int main() {
+    char str[MAX_STR];
+    /* Vetor de palavras linearizado: cada palavra ocupa MAX_TAM_PALAVRA posicoes */
+    char palavras[MAX_PALAVRAS * MAX_TAM_PALAVRA];
+    int num_palavras = 0;
+    int i, j, k;
+    int total_pares = 0;
+
+    /* Le a string */
+    fgets(str, MAX_STR, stdin);
+
+    /* Remove o '\n' do final se houver */
+    i = 0;
+    while (str[i] != '\0') {
+        if (str[i] == '\n') { str[i] = '\0'; break; }
+        i++;
+    }
+
+    /* Extrai palavras da string */
+    i = 0;
+    while (str[i] != '\0' && num_palavras < MAX_PALAVRAS) {
+        /* Pula caracteres nao-letra */
+        while (str[i] != '\0' && !eh_letra(str[i]))
+            i++;
+
+        if (str[i] == '\0') break;
+
+        /* Copia a palavra para o vetor linearizado */
+        k = 0;
+        while (str[i] != '\0' && eh_letra(str[i])) {
+            palavras[num_palavras * MAX_TAM_PALAVRA + k] = str[i];
+            i++;
+            k++;
+        }
+        palavras[num_palavras * MAX_TAM_PALAVRA + k] = '\0';
+        num_palavras++;
+    }
+
+    /* Verifica pares de anagramas */
+    /* Primeiro, conta os pares para saber se deve imprimir o cabecalho */
+    for (i = 0; i < num_palavras; i++) {
+        for (j = i + 1; j < num_palavras; j++) {
+            char *pi = palavras + i * MAX_TAM_PALAVRA;
+            char *pj = palavras + j * MAX_TAM_PALAVRA;
+
+            if (!palavras_iguais(pi, pj) && sao_anagramas(pi, pj)) {
+                total_pares++;
+            }
+        }
+    }
+
+    if (total_pares == 0) {
+        printf("Nao existem anagramas na frase.\n");
+    } else {
+        printf("Pares de anagramas encontrados:\n");
+        for (i = 0; i < num_palavras; i++) {
+            for (j = i + 1; j < num_palavras; j++) {
+                char *pi = palavras + i * MAX_TAM_PALAVRA;
+                char *pj = palavras + j * MAX_TAM_PALAVRA;
+
+                if (!palavras_iguais(pi, pj) && sao_anagramas(pi, pj)) {
+                    printf("%s e %s\n", pi, pj);
+                }
+            }
+        }
+        printf("\nTotal de pares: %d\n", total_pares);
+    }
+
+    return 0;
+}
