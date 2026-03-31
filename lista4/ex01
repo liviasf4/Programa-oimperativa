@@ -1,0 +1,81 @@
+#include <stdio.h>
+
+// Função para processar a queda e o espalhamento
+void processarAgua(int m, int n, char parede[m][n]) {
+    int houveMudanca = 1;
+
+    // Repetimos o processo até que nenhuma gota nova seja adicionada
+    while (houveMudanca) {
+        houveMudanca = 0;
+
+        for (int i = 0; i < m - 1; i++) {
+            for (int j = 0; j < n; j++) {
+                // Se encontramos uma gota
+                if (parede[i][j] == 'o') {
+                    
+                    // 1. Queda vertical direta
+                    if (parede[i + 1][j] == '.') {
+                        parede[i + 1][j] = 'o';
+                        houveMudanca = 1;
+                    } 
+                    // 2. Encontrou prateleira: espalha para os lados
+                    else if (parede[i + 1][j] == '#') {
+                        
+                        // Espalha para a esquerda até o fim da prateleira
+                        int esq = j - 1;
+                        while (esq >= 0) {
+                            if (parede[i][esq] == '.') {
+                                parede[i][esq] = 'o';
+                                houveMudanca = 1;
+                            }
+                            // Se não tem mais prateleira embaixo, para de espalhar nessa linha
+                            if (parede[i + 1][esq] == '.' || parede[i + 1][esq] == 'o') break;
+                            esq--;
+                        }
+
+                        // Espalha para a direita até o fim da prateleira
+                        int dir = j + 1;
+                        while (dir < n) {
+                            if (parede[i][dir] == '.') {
+                                parede[i][dir] = 'o';
+                                houveMudanca = 1;
+                            }
+                            // Se não tem mais prateleira embaixo, para de espalhar nessa linha
+                            if (parede[i + 1][dir] == '.' || parede[i + 1][dir] == 'o') break;
+                            dir++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+int main() {
+    int m, n;
+
+    if (scanf("%d %d", &m, &n) != 2) return 0;
+
+    char parede[m][n];
+
+    // Leitura da matriz
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf(" %c", &parede[i][j]);
+            // Normaliza a gota para minúsculo caso venha 'O'
+            if (parede[i][j] == 'O') parede[i][j] = 'o';
+        }
+    }
+
+    processarAgua(m, n, parede);
+
+    // Saída da matriz formatada
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("%c", parede[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
