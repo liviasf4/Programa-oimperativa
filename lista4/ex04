@@ -1,0 +1,95 @@
+#include <stdio.h>
+
+#define MAX 100
+
+// fun��o para verificar se pode andar na posi��o
+int pode_ir(int l, int c, int linhas, int colunas, char mapa[MAX][MAX], int dist[MAX][MAX]) {
+    if (l < 0 || l >= linhas || c < 0 || c >= colunas)
+        return 0;
+    if (mapa[l][c] == '#')
+        return 0;
+    if (dist[l][c] != -1) // j� visitado
+        return 0;
+    return 1;
+}
+
+int main() {
+    int linhas, colunas;
+    scanf("%dx%d", &linhas, &colunas);
+
+    char mapa[MAX][MAX];
+    int dist[MAX][MAX];
+
+    // leitura do mapa
+    for (int i = 0; i < linhas; i++) {
+        for (int j = 0; j < colunas; j++) {
+            scanf(" %c", &mapa[i][j]);
+            dist[i][j] = -1; // inicializa dist�ncias
+        }
+    }
+
+    int oi, oj;
+
+    // encontrar origem
+    for (int i = 0; i < linhas; i++) {
+        for (int j = 0; j < colunas; j++) {
+            if (mapa[i][j] == 'o') {
+                oi = i;
+                oj = j;
+            }
+        }
+    }
+
+    // fila simples (sem ponteiros)
+    int fila_l[MAX * MAX];
+    int fila_c[MAX * MAX];
+    int inicio = 0, fim = 0;
+
+    // come�a pela origem
+    fila_l[fim] = oi;
+    fila_c[fim] = oj;
+    fim++;
+
+    dist[oi][oj] = 0;
+
+    int encontrou = 0;
+    int resposta = 0;
+
+    while (inicio < fim) {
+        int l = fila_l[inicio];
+        int c = fila_c[inicio];
+        inicio++;
+
+        // chegou no destino
+        if (mapa[l][c] == 'd') {
+            encontrou = 1;
+            resposta = dist[l][c];
+            break;
+        }
+
+        // movimentos: cima, baixo, esquerda, direita
+        int dl[4] = {-1, 1, 0, 0};
+        int dc[4] = {0, 0, -1, 1};
+
+        for (int k = 0; k < 4; k++) {
+            int nl = l + dl[k];
+            int nc = c + dc[k];
+
+            if (pode_ir(nl, nc, linhas, colunas, mapa, dist)) {
+                dist[nl][nc] = dist[l][c] + 1;
+
+                fila_l[fim] = nl;
+                fila_c[fim] = nc;
+                fim++;
+            }
+        }
+    }
+
+    if (encontrou) {
+        printf("Apos correr %d metros e quase desistir por causa da dist�ncia, Rebeka conseguiu escapar!\n", resposta);
+    } else {
+        printf("Poxa... Parece que nao foi dessa vez que Rebeka conseguiu fugir\n");
+    }
+
+    return 0;
+}
