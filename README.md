@@ -37,6 +37,7 @@ Foi bem parecida com a do teste, achei essa mais fácil, tive dificuldade també
 Aprendizados sobre os códigos em C (LISTA 3):
  Tive bastante dificuldade com os códigos dessa lista, eu sabia fazer uma lógica que desse certo, mas tinha uma certa incerteza com o código.
  Fiquei 3 dias em uma questão com nível de iniciante, estava zerando uma variavel sem motivo, descobri que acontecia apenas no meu notebook que é windows, mas rodei no linux do cin e funcionou, não sei se o impostor dessa matéria está sendo meu notebook ou eu, mas espero melhorar.
+ Nessa lista, o chat me ajudou a fazer muita coisa, não o código em si, mas a consertar coisas incertas.
 
  Aprendizados sobre os códigos em C (LISTA 4):
  
