@@ -40,4 +40,5 @@ Aprendizados sobre os códigos em C (LISTA 3):
  Nessa lista, o chat me ajudou a fazer muita coisa, não o código em si, mas a consertar coisas incertas.
 
  Aprendizados sobre os códigos em C (LISTA 4):
- 
+   Não achei tão difícil essa lista. Teve apenas uma questão que não consegui fazer nem entender direito, mas, no geral, as outras estavam boas. Essa lista em específico foi mais fácil para mim, embora eu ainda não sinta que tenho total domínio em c.
+   Consegui compreender melhor o uso de funções e também como manipular matrizes na linguagem C, mas ainda preciso praticar mais para ganhar segurança nesses assuntos.
